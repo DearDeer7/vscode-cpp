@@ -1,6 +1,5 @@
-/.vscode
-/.VSCodeCounter
-/contest
-/tmp 
-/leetcode-cn
-/leetcode-cn/1.两数之和.cpp
+.vscode/
+.VSCodeCounter/
+contest/
+tmp /
+leetcode-cn/
