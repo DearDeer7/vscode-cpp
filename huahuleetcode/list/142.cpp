@@ -32,28 +32,25 @@ public:
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        ListNode * fast, *slow;
-        fast = slow = head;
+        // 链表为空或有一个元素，则无环
+        if(!head || !head->next) return nullptr; 
+        
+        ListNode* slow = head;
+        ListNode* fast = head->next;
 
-        while(fast) {
-            if(fast->next) {
-                fast = fast->next->next;
-                slow = slow->next;
-            }
-            else return nullptr;
-
-            if(fast == slow) {
-                break;
-            }
+        while(fast && fast->next) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if(fast == slow) break;
         }
         
         if(fast == nullptr) return nullptr;
 
-        // reference labuladong
         while(head != slow) {
             head = head->next;
             slow = slow->next;
         }
+        
         return head;
     }
 };
