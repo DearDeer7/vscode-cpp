@@ -1,6 +1,9 @@
+*.exe
+
 /.vscode
 /.VSCodeCounter
-/contest
-/tmp 
-/os
-/leetcode
+
+contest/*
+tmp/*
+os/*
+leetcode/*
