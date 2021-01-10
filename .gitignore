@@ -3,7 +3,8 @@
 /.vscode
 /.VSCodeCounter
 
-contest/*
-tmp/*
-os/*
-leetcode/*
+# 忽略根目录下文件夹内容
+/contest/
+/tmp/
+/os/
+/leetcode/
