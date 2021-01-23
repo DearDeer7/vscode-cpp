@@ -206,6 +206,69 @@ ListNode* merge(ListNode *l1, ListNode* l2) {
 }
 ```
 
+### 生成排列数
+
+**P(n, d)：** 从所给的`N`个数从选择`d`个生成所有的排列。
+
+```cpp
+vector<vector<int>> Permutations(vector<int>& nums, int d) {
+    vector<vector<int>> ans; // 储存排列结果
+
+    vector<int> cur; // 当前排列
+    vector<int> used(nums.size(), 0); // 访问数组
+
+    function<void(int)> dfs = [&] (int depth) { // dfs生成所有排列 depth递归深度
+        if(depth == d) {
+            ans.push_back(cur);
+            return;
+        }
+
+        for(int i = 0; i < nums.size(); ++i) {
+            if(used[i]) continue;
+            used[i] = 1;
+            cur.push_back(nums[i]);
+            dfs(depth + 1);
+            cur.pop_back();
+            used[i] = 0;
+        }
+    };
+
+    dfs(0);
+
+    return ans;
+}
+```
+
+## 生成组合数
+
+**C(n, d)：** 从所给的`N`个数从选择`d`个生成所有的组合。
+
+```cpp
+vector<vector<int>> Combinations(vector<int>& nums, int d) {
+    vector<vector<int>> ans; // 储存组合结果
+    vector<int> cur; // 当前组合
+
+    // dfs生成所有组合 depth递归深度 s起始位置
+    function<void(int, int)> dfs = [&] (int depth, int s) { 
+        if(depth == d) {
+            ans.push_back(cur);
+            return;
+        }
+
+        for(int i = s; i < nums.size(); ++i) { // 从s位置开始遍历
+            cur.push_back(nums[i]);
+            dfs(depth + 1, i + 1);
+            cur.pop_back();
+        }
+    };
+
+    dfs(0, 0);
+
+    return ans;
+}
+```
+
+
 
 
 ## 3.STL
@@ -236,4 +299,24 @@ while(a) {
     b++;
 }
 ```
+
+## 5.Tricks
+
+### 切换字母大小写
+
+ASCII： 
+
+A-Z 65 - 90
+
+a-z 97 - 122
+
+'a' - 'A' = 32 = (1 << 5) 即小写字母第五位都是0，大写字母第五位都是1
+
+```cpp
+void toggle(char& c) {
+    c ^= (1 << 5);
+}
+```
+
+
 
