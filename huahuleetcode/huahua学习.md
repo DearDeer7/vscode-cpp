@@ -302,7 +302,7 @@ while(a) {
 
 ## 5.Tricks
 
-### 切换字母大小写
+### 切换字母大小写（位运算）
 
 ASCII： 
 
@@ -318,5 +318,15 @@ void toggle(char& c) {
 }
 ```
 
+### 判断一个数是否是2的幂（位运算）
 
+```cpp
+if n is power of 2
+    then n & (n - 1) = 0
+that is:
+bool isPowerOfTwo(ll n) {
+    if(n & (n - 1) == 0) return true;
+    else return false;
+}
+```
 
